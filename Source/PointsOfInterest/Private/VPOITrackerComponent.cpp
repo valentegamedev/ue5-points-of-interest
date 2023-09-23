@@ -41,7 +41,7 @@ void UVPOITrackerComponent::OnEndOverlap(UPrimitiveComponent* OverlappedComponen
 			if(ClosestPOI)
 			{
 				//Notify the OnEndFocus in the item through the interface
-				IVPOIItemInterface::Execute_OnEndFocus(ClosestPOI.Get());
+				IVPOIItemInterface::Execute_OnEndFocus(ClosestPOI);
 			}
 			ClosestPOI = nullptr;
 			GetWorld()->GetTimerManager().ClearTimer(TimerHandler);
@@ -66,13 +66,13 @@ void UVPOITrackerComponent::UpdatePointsOfInterest()
 		//If we already had a closest item before
 		if(ClosestPOI) {
 			//Notify the OnEndFocus in the old one
-			IVPOIItemInterface::Execute_OnEndFocus(ClosestPOI.Get());
+			IVPOIItemInterface::Execute_OnEndFocus(ClosestPOI);
 		}
 		
 		ClosestPOI = POIList[0];
 		//Notify the OnBeginFocus in the new one
-		IVPOIItemInterface::Execute_OnBeginFocus(ClosestPOI.Get());
-		OnPointOfInterestFocused.Broadcast(ClosestPOI.Get());
+		IVPOIItemInterface::Execute_OnBeginFocus(ClosestPOI);
+		OnPointOfInterestFocused.Broadcast(ClosestPOI);
 	}
 
 	//Draw a line from the character to the closest POI Item
