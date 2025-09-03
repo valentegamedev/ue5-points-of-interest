@@ -54,4 +54,7 @@ void UVPOITrackerComponent::UpdatePointsOfInterest()
 	});
 		
 	ClosestPOI = POIList[0];
+
+	//Draw a line from the character to the closest POI Item
+	DrawDebugLine(GetWorld(), GetOwner()->GetActorLocation(), ClosestPOI->GetActorLocation(), FColor::Green, false, -1, 0, 2);
 }
