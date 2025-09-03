@@ -14,6 +14,12 @@ class ONLINELEARNINGKIT_API UVPOITrackerComponent : public USphereComponent
 {
 	GENERATED_BODY()
 
+	UPROPERTY()
+	FTimerHandle TimerHandler;
+	 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<AActor> ClosestPOI;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TArray<AActor*> POIList;
 	 
@@ -23,6 +29,9 @@ class ONLINELEARNINGKIT_API UVPOITrackerComponent : public USphereComponent
 	UFUNCTION()
 	void OnEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
+	UFUNCTION()
+	void UpdatePointsOfInterest();
+	
 protected:
 	virtual void BeginPlay() override;	 
 };
